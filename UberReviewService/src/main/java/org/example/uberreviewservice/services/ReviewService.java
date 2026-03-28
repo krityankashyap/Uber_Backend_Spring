@@ -5,6 +5,7 @@ import org.example.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class ReviewService implements CommandLineRunner {
         for(Review review : reviews){
             System.out.println(review.getContent());
         }
+
+        reviewRepository.deleteAllById(Collections.singleton(2L));
     }
 
 
