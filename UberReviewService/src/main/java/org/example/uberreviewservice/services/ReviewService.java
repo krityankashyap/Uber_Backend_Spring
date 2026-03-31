@@ -71,7 +71,7 @@ public class ReviewService implements CommandLineRunner {
 ////                System.out.println(booking.getBookingStatus());
 ////            }
 
-        Optional<Driver> d = driverRepository.rawfindByIdAndlicenseNumber(1L , "DL12121");
+        Optional<Driver> d = driverRepository.hibernatefindByIdAndlicenseNumber(1L , "DL12121");
         System.out.println(d.get().getName());
         }
 
