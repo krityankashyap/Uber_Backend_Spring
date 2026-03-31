@@ -55,23 +55,25 @@ public class ReviewService implements CommandLineRunner {
 //
 //        reviewRepository.deleteAllById(Collections.singleton(2L));
 
-        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1L, "DL12121");
-
-        if(driver.isPresent()){
-            System.out.println(driver.get().getName());
-
-            List<Booking> b= driver.get().getBookings();
-
-            for(Booking booking : b){
-                System.out.println(String.valueOf(booking.getId()));
-            }
+//        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1L, "DL12121");
+//
+//        if(driver.isPresent()){
+//            System.out.println(driver.get().getName());
+//
+//            List<Booking> b= driver.get().getBookings();
+//
+//            for(Booking booking : b){
+//                System.out.println(String.valueOf(booking.getId()));
+//            }
 
 ////            List<Booking> bookings = bookingRepository.findAllByDriverId(1L);
 ////            for(Booking booking : bookings){
 ////                System.out.println(booking.getBookingStatus());
 ////            }
+
+        Optional<Driver> d = driverRepository.rawfindByIdAndlicenseNumber(1L , "DL12121");
+        System.out.println(d.get().getName());
         }
-   }
 
 
 }
