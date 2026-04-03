@@ -1,5 +1,6 @@
 package org.example.uberreviewservice.services;
 
+import jakarta.transaction.Transactional;
 import org.example.uberreviewservice.models.Booking;
 import org.example.uberreviewservice.models.Driver;
 import org.example.uberreviewservice.models.Review;
@@ -9,12 +10,10 @@ import org.example.uberreviewservice.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
+@Transactional
 public class ReviewService implements CommandLineRunner {
 
     private final DriverRepository driverRepository;
@@ -71,9 +70,19 @@ public class ReviewService implements CommandLineRunner {
 ////                System.out.println(booking.getBookingStatus());
 ////            }
 
-        Optional<Driver> d = driverRepository.hibernatefindByIdAndlicenseNumber(1L , "DL12121");
-        System.out.println(d.get().getName());
+//        Optional<Driver> d = driverRepository.hibernatefindByIdAndlicenseNumber(1L , "DL12121");
+//        System.out.println(d.get().getName());
+//        }
+
+        List<Long> driverIds= new ArrayList<>(Arrays.asList(1L, 2L, 3L, 4L));
+        List<Driver> drivers= driverRepository.findAllByIdIn(driverIds);
+
+       //  List<Booking> bookings= bookingRepository.findAllByDriverIn(drivers);
+
+        for(Driver driver: drivers){
+            List<Booking>bookings= driver.getBookings();
+
+            bookings.forEach(booking -> System.out.println(booking.getId()));
         }
-
-
+    }
 }

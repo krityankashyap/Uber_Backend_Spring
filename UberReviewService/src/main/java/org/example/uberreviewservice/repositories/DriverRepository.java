@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DriverRepository extends JpaRepository<Driver, Long> {
@@ -16,4 +17,6 @@ public interface DriverRepository extends JpaRepository<Driver, Long> {
 
     @Query("SELECT d FROM Driver AS d WHERE d.Id= :id AND d.licenseNumber= :license") // hibernate query
     Optional<Driver> hibernatefindByIdAndlicenseNumber(@Param("id") Long id, @Param("license") String license);
+
+    List<Driver> findAllByIdIn(List<Long> driverId);
 }
