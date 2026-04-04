@@ -19,4 +19,6 @@ public class Review extends BaseClass {
 
     private Double ratings;
 
+
+
 }

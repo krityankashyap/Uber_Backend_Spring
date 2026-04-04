@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.TenantId;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Booking extends BaseClass {
 
-    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.REMOVE}, fetch = FetchType.LAZY)   // we have defined as one to one relationship between booking and review
+    @OneToOne(cascade = {CascadeType.PERSIST , CascadeType.REMOVE})   // we have defined as one to one relationship between booking and review
     private Review review;
 
     @Enumerated(value = EnumType.STRING)
