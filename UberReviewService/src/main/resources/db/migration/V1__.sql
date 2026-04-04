@@ -4,7 +4,7 @@ CREATE TABLE booking
     created_at     datetime              NOT NULL,
     updated_at     datetime              NOT NULL,
     review_id      BIGINT                NULL,
-    booking_status VARCHAR(255)          NULL,
+    booking_status ENUM('SCHEDULED' , 'CANCELLED' , 'CAR_ARRIVED' , 'ASSIGNING_DRIVER' , 'IN_RIDE' , 'COMPLETED')          NULL,
     start_time     datetime              NULL,
     end_time       datetime              NULL,
     total_distance BIGINT                NULL,
