@@ -25,6 +25,12 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
+    public Review publishReview(Review review){
+        return this.reviewRepository.save(review);
+    }
+
+
+    @Override
     public boolean DeleteReviewById(Long id) {
          try{
              reviewRepository.deleteById(id);
