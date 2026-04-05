@@ -1,88 +1,15 @@
 package org.example.uberreviewservice.services;
 
-import jakarta.transaction.Transactional;
-import org.example.uberreviewservice.models.Booking;
-import org.example.uberreviewservice.models.Driver;
 import org.example.uberreviewservice.models.Review;
-import org.example.uberreviewservice.repositories.BookingRepository;
-import org.example.uberreviewservice.repositories.DriverRepository;
-import org.example.uberreviewservice.repositories.ReviewRepository;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
-@Service
-@Transactional
-public class ReviewService implements CommandLineRunner {
+public interface ReviewService {
 
-    private final DriverRepository driverRepository;
-    ReviewRepository reviewRepository;
+    public Optional<Review> findReviewById(Long id);
 
-    BookingRepository bookingRepository;
+    public List<Review> findAllReview();
 
-    public ReviewService(ReviewRepository reviewRepository, BookingRepository bookingRepository, DriverRepository driverRepository){
-        this.reviewRepository = reviewRepository;
-        this.bookingRepository = bookingRepository;
-        this.driverRepository = driverRepository;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        System.out.print("************");
-//
-//        Review r= Review.
-//                   builder().
-//                   content("Best quality ride").
-//                   ratings(5.0).
-//                   build();
-//
-//        Booking b= Booking.builder()
-//                        .endTime(new Date())
-//                                .review(r)
-//                                        .build();
-//
-//       // reviewRepository.save(r); // this code executes sql query
-//
-//        bookingRepository.save(b);
-//
-//        List<Review> reviews = reviewRepository.findAll();
-//
-//        for(Review review : reviews){
-//            System.out.println(review.getContent());
-//        }
-//
-//        reviewRepository.deleteAllById(Collections.singleton(2L));
-
-//        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1L, "DL12121");
-//
-//        if(driver.isPresent()){
-//            System.out.println(driver.get().getName());
-//
-//            List<Booking> b= driver.get().getBookings();
-//
-//            for(Booking booking : b){
-//                System.out.println(String.valueOf(booking.getId()));
-//            }
-
-////            List<Booking> bookings = bookingRepository.findAllByDriverId(1L);
-////            for(Booking booking : bookings){
-////                System.out.println(booking.getBookingStatus());
-////            }
-
-//        Optional<Driver> d = driverRepository.hibernatefindByIdAndlicenseNumber(1L , "DL12121");
-//        System.out.println(d.get().getName());
-//        }
-
-        List<Long> driverIds= new ArrayList<>(Arrays.asList(1L, 2L, 3L, 4L));
-        List<Driver> drivers= driverRepository.findAllByIdIn(driverIds);
-
-       //  List<Booking> bookings= bookingRepository.findAllByDriverIn(drivers);
-
-        for(Driver driver: drivers){
-            List<Booking>bookings= driver.getBookings();
-
-            bookings.forEach(booking -> System.out.println(booking.getId()));
-        }
-    }
+    public boolean DeleteReviewById(Long id);
 }
