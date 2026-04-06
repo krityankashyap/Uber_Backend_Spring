@@ -1,5 +1,6 @@
 package org.example.uberreviewservice.services;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.example.uberreviewservice.models.Review;
 import org.example.uberreviewservice.repositories.ReviewRepository;
 
@@ -39,5 +40,20 @@ public class ReviewServiceImpl implements ReviewService{
              return false;
          }
 
+    }
+
+    @Override
+    public Review updateReview(Long id, Review newReviewData){
+        Review review = this.reviewRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+
+        if(newReviewData.getRatings() != null){
+            review.setRatings(newReviewData.getRatings());
+        }
+
+        if(newReviewData.getContent() != null){
+            review.setContent(newReviewData.getContent());
+        }
+
+        return this.reviewRepository.save(review);
     }
 }
