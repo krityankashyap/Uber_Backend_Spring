@@ -1,5 +1,6 @@
 package org.example.uberreviewservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.Fetch;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "booking_review")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "booking"})
 public class Review extends BaseClass {
 
 
