@@ -13,7 +13,7 @@ import org.hibernate.annotations.Fetch;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "booking_review")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "booking"})
+@JsonIgnoreProperties({"hibernateLazyInitializer",  "handler", "booking"})
 public class Review extends BaseClass {
 
 
