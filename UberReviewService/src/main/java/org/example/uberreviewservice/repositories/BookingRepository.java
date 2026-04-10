@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking , Long> {
 
-    List<Booking> findAllByDriverId(Long driverId);
+//    List<Booking> findAllByDriverId(Long driverId);
+//
+//    List<Booking> findAllByDriverIn(List<Driver> drivers);
 
-    List<Booking> findAllByDriverIn(List<Driver> drivers);
-
-    @Query("select r from Booking b inner join Review r on b.review = r where b.Id = :bookingId")
-    Review findReviewByBookingId(Long bookingId);
+//    @Query("select r from Booking b inner join Review r on b.review = r where b.Id = :bookingId")
+//    Review findReviewByBookingId(Long bookingId);
 }

@@ -2,6 +2,7 @@ package org.example.uberreviewservice.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 @Setter
 @Getter
@@ -19,6 +20,8 @@ public class Review extends BaseClass {
 
     private Double ratings;
 
-
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    private Booking booking;
 
 }
