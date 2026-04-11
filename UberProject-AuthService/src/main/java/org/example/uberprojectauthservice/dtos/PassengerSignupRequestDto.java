@@ -13,7 +13,7 @@ public class PassengerSignupRequestDto {
 
     private String password;
 
-    private String phoneNumber;
+    private String phone_number;
 
     private String name;
 }

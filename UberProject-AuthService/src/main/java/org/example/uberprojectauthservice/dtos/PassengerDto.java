@@ -1,6 +1,7 @@
 package org.example.uberprojectauthservice.dtos;
 
 import lombok.*;
+import org.example.uberprojectauthservice.models.Passenger;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class PassengerDto {
 
-    private String id;
+    private Long id;
 
     private String name;
 
@@ -19,7 +20,20 @@ public class PassengerDto {
 
     private String password; // hashed password
 
-    private String phoneNumber;
+    private String phone_number;
 
     private Date createdAt;
+
+    public static PassengerDto from (Passenger p){
+        PassengerDto result= PassengerDto.builder()
+                .id(p.getId())
+                .name(p.getName())
+                .email(p.getEmail())
+                .createdAt(p.getCreatedAt())
+                .password(p.getPassword())
+                .phone_number(p.getPhone_number())
+                .build();
+
+        return result;
+    }
 }

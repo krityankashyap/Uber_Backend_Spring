@@ -21,7 +21,7 @@ public class Passenger extends BaseClass{
     private String name;
 
     @Column(nullable = false)
-    private String phoneNumber;
+    private String phone_number;
 
     @Column(nullable = false)
     private String email;
