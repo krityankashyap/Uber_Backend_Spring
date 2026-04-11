@@ -4,6 +4,7 @@ import org.example.uberprojectauthservice.dtos.PassengerDto;
 import org.example.uberprojectauthservice.dtos.PassengerSignupRequestDto;
 import org.example.uberprojectauthservice.models.Passenger;
 import org.example.uberprojectauthservice.repositories.PassengerRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,15 +12,18 @@ public class AuthService {
 
     private PassengerRepository passengerRepository;
 
-    public AuthService(PassengerRepository passengerRepository){
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public AuthService(PassengerRepository passengerRepository , BCryptPasswordEncoder bCryptPasswordEncoder){
         this.passengerRepository= passengerRepository;
+        this.bCryptPasswordEncoder= bCryptPasswordEncoder;
     }
 
     public PassengerDto signupPassenger(PassengerSignupRequestDto passengerSignupRequestDto){
         Passenger passenger= Passenger.builder()
                         .name(passengerSignupRequestDto.getName())
                                 .email(passengerSignupRequestDto.getEmail())
-                                        .password(passengerSignupRequestDto.getPassword()) // TODO: Encrypt the password
+                                        .password(bCryptPasswordEncoder.encode(passengerSignupRequestDto.getPassword()))
                                                 .phone_number(passengerSignupRequestDto.getPhone_number())
                                                      .build();
 
