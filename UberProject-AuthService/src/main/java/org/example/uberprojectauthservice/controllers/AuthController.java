@@ -33,9 +33,16 @@ public class AuthController {
     }
 
 
-    @GetMapping("/signin/passenger")
+    @PostMapping("/signin/passenger")
     public ResponseEntity<?> signIn(@RequestBody AuthRequestDto authRequestDto){
-        Authentication authentication= authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getPassword() , authRequestDto.getEmail()));
+        System.out.println("Incoming req " + authRequestDto.getPassword() + " " + authRequestDto.getEmail());
+        Authentication authentication =
+                authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(
+                                authRequestDto.getEmail(),   // username
+                                authRequestDto.getPassword() // password
+                        )
+                );
         if(authentication.isAuthenticated()){
             return new ResponseEntity<>("Auth successful", HttpStatus.OK);
         }
